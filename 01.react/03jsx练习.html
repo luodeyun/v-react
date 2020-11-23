@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="test"></div>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+      //准备一些数据
+      let data = ["Angular", "React", "Vue", "jQuery"];
+      let data2 = [
+        <li>Angular</li>,
+        <li>Angular</li>,
+        <li>Angular</li>,
+        <li>Angular</li>,
+      ];
+      let vDOM = (
+        <div>
+          <h2>前端js框架列表</h2>
+          <ul>
+            {data.map((item, i) => {
+              //我们暂时使用i作为每一个child的key，但是会产生一个问题
+              return <li key={i}>{item}</li>;
+            })}
+          </ul>
+        </div>
+      );
+      ReactDOM.render(vDOM, document.getElementById("test"));
+    </script>
+  </body>
+</html>
