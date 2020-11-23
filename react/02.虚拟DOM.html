@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .red{
+        color: red
+    }</style>
+</head>
+
+<body>
+    <div id='test1'></div>
+    <div id='test2'></div>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type='text/javascript'>
+        //   使用js语法创建虚拟DOM
+        let myID = 'aTgUiGu'
+        let myData = 'Hello,World'
+        //1.使用js创建虚拟DOM
+        let vDOM = React.createElement('h2', {
+            id: myID.toLowerCase()
+        }, myData.toLowerCase())
+        //2.渲染虚拟DOM到页面
+        console.log(typeof vDOM);
+        
+        ReactDOM.render(vDOM, document.getElementById('test1'))
+    </script>
+    <script type='text/babel'>
+        //使用jsx语法创建虚拟DOM
+    let vDOM2 = 
+    (<h3 id={myID.toUpperCase()} >
+    <span className='red'>
+    {myData.toUpperCase()}
+    </span>
+    </h3>)
+    ReactDOM.render(vDOM2, document.getElementById('test2'))
+//    //jsx 几个规矩
+//     1.class 变为className
+//     2.变量用{}包起来
+//     3.一个根标签
+   /*
+   备注：
+     1.虚拟dom的本质是什么，到底是什么？
+        JS中的object对象
+     2.虚拟DOM与真实DOM有什么区别？
+     虚拟DOM比较轻 真实DOM比较重 
+     虚拟DOM上无需有过多的API ，
+   */
+    </script>
+</body>
+
+</html>
