@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div id="example1"></div>
+<div id="example2"></div>
+
+<body>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/prop-types/15.5.10/prop-types.min.js"></script>
+</body>
+<script type='text/babel'>
+/* 限制条件
+1)姓名必须指定，且为字符串类型
+2)性别不是必须传递的，但是必须为字符串类型，默认为男
+3)年龄为数字内心，如果没有年龄指定，默认为18
+
+*/
+    class Person extends React.Component{
+    render(){
+        console.log(this); 
+         /*
+         props:
+         age: 18
+         name: "kobe"
+         sex: "男 "
+         __proto__: Object
+         */
+        let { name,age, sex} = this.props
+        return(
+            <ul> 
+            <li>姓名：{name}</li>
+            <li>性别：{sex}</li>
+            <li>年龄：{age}</li>  
+            </ul>
+        )
+    }
+}
+//限制标签传递属性时的：必要性，类型
+ReactDOM.render(<Person name='kobe' age={18} sex='男 '/>,document.getElementById('example1'))
+ReactDOM.render(<Person name='kobe' age={18} sex='男 '/>,document.getElementById('example2'))
+
+</script>
+
+</html>
