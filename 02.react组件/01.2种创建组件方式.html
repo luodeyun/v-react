@@ -16,6 +16,9 @@
       //使用工厂函数创建组件
       //1.所有组件开头字母大写
       function Mycomponent() {
+        //工厂函数中的this是undefind
+        console.log(this);  //undefind 
+        
         return (
           <div>
             <h1>hello</h1>
@@ -38,6 +41,8 @@
         }
         //重写从父类继承的
         render() {
+          console.log(this);//类组件中render方法里的this是组件类的实例对象
+          
           return <h1>我是ES6类组件</h1>;
         }
       }
