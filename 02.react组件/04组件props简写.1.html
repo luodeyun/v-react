@@ -9,6 +9,7 @@
 </head>
 <div id="example1"></div>
 <div id="example2"></div>
+<div id="example3"></div>
 
 <body>
     <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
@@ -18,15 +19,24 @@
     <script src="https://cdn.staticfile.org/prop-types/15.5.10/prop-types.min.js"></script>
 </body>
 <script type='text/babel'>
-/* 限制条件
+    /* 限制条件
 1)姓名必须指定，且为字符串类型
 2)性别不是必须传递的，但是必须为字符串类型，默认为男
 3)年龄为数字内心，如果没有年龄指定，默认为18
 
 */
     class Person extends React.Component{
-    render(){
-        console.log(this); 
+        static propTypes={
+               name:PropTypes.string.isRequired,
+               age:PropTypes.number,
+               sex:PropTypes.string
+         }
+        static defaultProps={   
+         age:18,
+         sex:'不男不女'
+         }
+        render(){
+           console.log(this); 
          /*
          props:
          age: 18
@@ -34,28 +44,21 @@
          sex: "男 "
          __proto__: Object
          */
-        let { name,age, sex} = this.props
-        return(
-            <ul> 
-            <li>姓名：{name}</li>
-            <li>性别：{sex}</li>
-            <li>年龄：{age}</li>  
-            </ul>
-        )
+           let { name,age, sex} = this.props
+           return(
+               <ul> 
+               <li>姓名：{name}</li>
+               <li>性别：{sex}</li>
+               <li>年龄：{age}</li>  
+               </ul>
+            )
+        }
     }
-}
 //限制标签传递属性时的：必要性，类型
-Person.propTypes={
-    name:PropTypes.string.isRequired,
-    age:PropTypes.number,
-    sex:PropTypes.string
-}
-Person.defaultProps={   
-    age:18,
-    sex:'不男不女'
-}
+let person = {name:'zhangsan',age:90,sex:'男'}
 ReactDOM.render(<Person name='kobe' age={18} sex='男'/>,document.getElementById('example1'))
 ReactDOM.render(<Person name='jack'/>,document.getElementById('example2'))
+ReactDOM.render(<Person {...person}/>,document.getElementById('example3'))
 
 </script>
 
