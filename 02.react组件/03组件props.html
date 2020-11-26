@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<div id="example1"></div>
-<div id="example2"></div>
+
 
 <body>
+        <div id="example1"></div>
+        <div id="example2"></div>
     <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
     <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
     <!-- 生产环境中不建议使用 -->
@@ -24,39 +25,63 @@
 3)年龄为数字内心，如果没有年龄指定，默认为18
 
 */
-    class Person extends React.Component{
-    render(){
-        console.log(this); 
-         /*
-         props:
-         age: 18
-         name: "kobe"
-         sex: "男 "
-         __proto__: Object
-         */
-        let { name,age, sex} = this.props
-        return(
-            <ul> 
-            <li>姓名：{name}</li>
-            <li>性别：{sex}</li>
-            <li>年龄：{age}</li>  
-            </ul>
-        )
-    }
-}
-//限制标签传递属性时的：必要性，类型
-Person.propTypes={
+//     class Person extends React.Component{
+//     render(){
+//         console.log(this); 
+//          /*
+//          props:
+//          age: 18
+//          name: "kobe"
+//          sex: "男 "
+//          __proto__: Object
+//          */
+//         let { name,age, sex} = this.props
+//         return(
+//             <ul> 
+//             <li>姓名：{name}</li>
+//             <li>性别：{sex}</li>
+//             <li>年龄：{age}</li>  
+//             </ul>
+//         )
+//     }
+// }
+// //限制标签传递属性时的：必要性，类型
+// Person.propTypes={
+//     name:PropTypes.string.isRequired,
+//     age:PropTypes.number,
+//     sex:PropTypes.string
+// }
+// Person.defaultProps={   
+//     age:18,
+//     sex:'不男不女'
+// }
+// ReactDOM.render(<Person name='kobe' age={18} sex='男'/>,document.getElementById('example1'))
+// ReactDOM.render(<Person name='jack'/>,document.getElementById('example2'))
+class Person extends React.Component{
+   static propTypes={
     name:PropTypes.string.isRequired,
     age:PropTypes.number,
     sex:PropTypes.string
 }
-Person.defaultProps={   
+ static defaultProps={
     age:18,
     sex:'不男不女'
 }
-ReactDOM.render(<Person name='kobe' age={18} sex='男'/>,document.getElementById('example1'))
-ReactDOM.render(<Person name='jack'/>,document.getElementById('example2'))
+    render(){
+        console.log(this.props);
+        let {name, age , sex} = this.props
+        return (
+            <ul>
+            <li>{name}</li>
+            <li>{age}</li>
+            <li>{sex}</li>
+            </ul>
+        )
+    }
+}
 
+ReactDOM.render(<Person name='kobe' age={18} sex='男'/>,document.getElementById('example1'))
+ReactDOM.render(<Person name='james'/>,document.getElementById('example2'))
 </script>
 
 </html>

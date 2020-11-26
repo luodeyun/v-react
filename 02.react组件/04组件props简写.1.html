@@ -25,6 +25,7 @@
 3)年龄为数字内心，如果没有年龄指定，默认为18
 
 */
+
     class Person extends React.Component{
         static propTypes={
                name:PropTypes.string.isRequired,
@@ -59,7 +60,6 @@ let person = {name:'zhangsan',age:90,sex:'男'}
 ReactDOM.render(<Person name='kobe' age={18} sex='男'/>,document.getElementById('example1'))
 ReactDOM.render(<Person name='jack'/>,document.getElementById('example2'))
 ReactDOM.render(<Person {...person}/>,document.getElementById('example3'))
-
 </script>
 
 </html>

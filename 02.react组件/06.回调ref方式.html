@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div id="test1"></div>
+<div id="test2"></div>
+<body>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script> 
+    <script src="https://cdn.staticfile.org/prop-types/15.5.10/prop-types.min.js"></script>
+    <script type='text/babel'>    
+    class MyComponent extends React.Component{
+            clickHandel=()=>{
+                 console.log(this.haha.value);                  
+            }
+            blurHandel=()=>{
+                console.log(this.refs.input2.value);              
+            }
+             render(){
+                 return (
+                      <div>
+                            <input type='text' ref ={(peiqi)=>{this.haha=peiqi}} />
+                            <button onClick={this.clickHandel} ref='peiqi'>点我提示数据</button>
+                            <input type='text' placeholder='失去焦点' onBlur={this.blurHandel} ref='input2'/>    
+                      </div>
+                 )
+             }
+         }
+         ReactDOM.render(<MyComponent/>,document.getElementById('test1'))
+    </script>
+</body>
+</html>
