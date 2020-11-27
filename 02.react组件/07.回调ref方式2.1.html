@@ -16,6 +16,7 @@
     <script src="https://cdn.staticfile.org/prop-types/15.5.10/prop-types.min.js"></script>
     <script type='text/babel'>    
     class MyComponent extends React.Component{
+        myRef=React.createRef()
             clickHandel=()=>{
                  console.log(this.haha.value);  
                  console.log(this);
@@ -23,14 +24,14 @@
             }
             blurHandel=()=>{
                 console.log(this.refs.input2.value);     
-                l         
+                   
             }
              render(){
                  return (
                       <div>
                             <input type='text' ref ={(peiqi)=>{this.haha=peiqi}} />
                             <button onClick={this.clickHandel} ref='peiqi1'>点我提示数据</button>
-                            <input type='text' placeholder='失去焦点' onBlur={this.blurHandel} ref='input2'/>    
+                            <input type='text' placeholder='失去焦点' onBlur={this.blurHandel} ref={this.myRef}/>    
                       </div>
                  )
              }

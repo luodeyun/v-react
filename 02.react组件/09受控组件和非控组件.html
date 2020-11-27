@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div id='test'></div>
+        <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js">
+        </script>
+        <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+        <!-- 生产环境中不建议使用 -->
+        <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+        <script src="https://cdn.staticfile.org/prop-types/15.5.10/prop-types.min.js"></script>
+        <script type='text/babel'>
+        class Login extends React.Component{
+            //初始化状态
+            state={
+                password:''
+            }
+            ChangeHandel=(event)=>{
+                 this.setState({password:event.target.value})
+        
+            }
+            
+            submitHandel=(event)=>{
+                /*
+                要求：1.用户名是当表单提交是获取到的
+                     2.当用户输入密码时用户每输入一位密码会自动维护到状态中，
+                     当点击提交表单时，从状态中获取自谦收集好的密码，弹窗提示
+                */
+                event.preventDefault();  //阻止默认事件
+                //弹窗提示用户的输入
+                let {username} = this.refs
+                let {password} = this.state
+                alert(`准备提交的用户名是：${username.value},密码是：${password}`)
+                
+            }
+            render(){
+                return (
+                    <div>
+                    <form action='https://www.baidu.com' onSubmit={this.submitHandel}>
+                    用户名：<input type='text' ref='username'/>
+                    密码:  <input type='password' onChange={this.ChangeHandel}/>
+                    <button >登录</button>
+                    </form>
+                </div>
+                     
+                )
+            }
+        }
+        ReactDOM.render(<Login/>,document.getElementById('test'))
+        </script>
+</body>
+</html>
