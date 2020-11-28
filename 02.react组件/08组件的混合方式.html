@@ -28,56 +28,48 @@
        3.保存在那个组件
      b.交互(从绑定事件监听开始)
     */
-   class App extends React.Component{
-       state={AddList:['吃饭','睡觉','打豆豆']}
-       add=(data)=>{
-           let {AddList}=this.state
-             AddList.unshift(data)
-             this.setState({AddList:AddList})
-       }
-       render(){
-           return (
-            <div>
-               <h1>Simple ToDo List</h1>
-                <Add add={this.add} count={this.state.AddList.length}/><List AddList={this.state.AddList}/>
-             </div>        
-             )
-       }
-   }
-   class Add extends React.Component{
-       add=()=>{
-        let inputs = this.input.value
-        if(inputs.trim()=='')return
-         this.props.add(inputs)
-         this.input.value=''
-           
-       }
-       render(){
-           let {count}=this.props
-           return (
-              <div>
-              <input type='text' ref={input=>this.input=input}/>
-              <button onClick={this.add}>Add#{count}</button>
-              </div>
-           )
-       }
-   }
-
-   class List extends React.Component{
-      render(){
-          let {AddList}=this.props
+  class App extends React.Component{
+      state={ AddList:['吃饭','睡觉','打豆豆']}
+      addToDo=(data)=>{
+          let AddList = this.state.AddList
+          AddList.unshift(data)
+          console.log(AddList);
           
-          return (
-           <ul>
-           {AddList.map((item,index)=>{
-               return <li key={index}>{item}</li>
-           })}
-           </ul>
-
+          
+          this.setState({AddList:AddList})
+      }
+      render(){
+          let count=this.state.AddList
+          return (<div>
+              <h1>Simple ToDo List</h1>
+              <Add addToDo={this.addToDo} count={count}/> <List AddList={this.state.AddList}/></div>
+                        )
+      }
+  }
+  class Add extends React.Component{
+      add=()=>{
+          let input = this.input.value
+          if(input.trim()=='')return
+            this.props.addToDo(input)
+      }
+      render(){
+          return (<div>
+              <input type='text' ref={(input)=>{this.input=input}}/>
+              <button onClick={this.add} >Add#{this.props.count.length}</button></div>
           )
       }
-   }
-   ReactDOM.render(<App/>,document.getElementById('test'))
+  }
+  class List extends React.Component{
+      render(){
+          let {AddList}= this.props
+          return (
+              <ul>
+              {AddList.map((item,index)=>{return <li key={index}>{item}</li>})}
+              </ul>
+          )
+      }
+  }
+  ReactDOM.render(<App/>,document.getElementById('test'))
     </script>
 </body>
 
