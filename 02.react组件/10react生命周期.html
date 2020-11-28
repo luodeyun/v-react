@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='test'></div>
+        <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js">
+        </script>
+        <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+        <!-- 生产环境中不建议使用 -->
+        <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+        <script src="https://cdn.staticfile.org/prop-types/15.5.10/prop-types.min.js"></script>
+        <script type='text/babel'>
+        /*
+        需求：自定义组件
+          1.让指定的文本做显示/隐藏的动画
+          2.切换事件为2s
+          3.点击按钮从界面中移除组件界面（当前组件在页面上消失）
+        */
+        class Life extends React.Component{
+            state={
+                opacity:0.5
+            }
+            componentWillMount(){
+                console.log('componentWillMount 1');
+            }
+            componentDidMount(){
+                console.log('componentDidMount 3');
+                
+            }
+            render(){
+                console.log('2');
+                
+                return (
+                    <div>
+                      <h1 style={{opacity:this.state.opacity,width:'400px'}}>React学不会怎么办？</h1>
+                      <button>不活啦</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Life/>,document.getElementById('test'))
+        </script>
+</body>
+</html>
